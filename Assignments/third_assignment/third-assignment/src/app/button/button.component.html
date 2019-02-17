@@ -1,0 +1,17 @@
+<button class="btn btn-primary" (click)="toggleDisplay()"
+>
+  Display Details
+</button>
+<p [ngStyle]="{display: getDisplay()}"> Hello World</p>
+<!-- <ul>
+  <li *ngFor = 'let log of logs' 
+  [ngStyle]="{backgroundColor: getColor()}">
+    Clicked {{log}}
+  </li>
+</ul> -->
+
+<p *ngFor = 'let log of logs' 
+  [ngStyle]="{backgroundColor: getColor(log)}"
+  [ngClass]="{online: log >=5}">
+  Clicked {{log}}
+</p>
