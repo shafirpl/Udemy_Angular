@@ -14,4 +14,13 @@
       </ol>
     </div>
   </div>
+  <hr>
+  <div class="row"></div>
+  <app-game-control (gameNumber)="gameLogic($event)"></app-game-control>
+  <div *ngFor="let number of gameNumbers">
+    <app-even *ngIf="number%2===0;else odd;" [gameNumber] = "number"></app-even>
+    <ng-template #odd>
+      <app-odd [gameNumber] = "number"></app-odd>
+    </ng-template>
+  </div>
 </div>
