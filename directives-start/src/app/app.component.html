@@ -15,21 +15,48 @@
                   </li>
         </div>
 
-        <div *ngIf = "!onlyOdd">
+        <!-- <div *ngIf = "!onlyOdd">
               <li class="list-group-item"
               *ngFor="let number of evenNumbers"
               [ngClass] = "{odd: number % 2 !== 0}"
               [ngStyle] = "{backgroundColor:number % 2 !== 0? 'yellow' : 'transparent'}">
                 {{ number }}
               </li>
-        </div>
+        </div> -->
+        <!-- <ng-template [ngIf]="!onlyOdd">
+          <div>
+            <li class="list-group-item" *ngFor="let number of evenNumbers" [ngClass]="{odd: number % 2 !== 0}"
+              [ngStyle]="{backgroundColor:number % 2 !== 0? 'yellow' : 'transparent'}">
+              {{ number }}
+            </li>
+          </div>
+        </ng-template> -->
+                <div *appUnless = "onlyOdd">
+                  <li class="list-group-item"
+                  *ngFor="let number of evenNumbers"
+                  [ngClass] = "{odd: number % 2 !== 0}"
+                  [ngStyle] = "{backgroundColor:number % 2 !== 0? 'yellow' : 'transparent'}">
+                    {{ number }}
+                  </li>
+                </div>
+
 
 
       </ul>
       <p appBasicHighlight>Style me with basic directive</p>
+      <!-- We could do something like this defaultColor = "pink",  -->
+      <!-- Here we are not using [] and the weird single quotation mark -->
+      <!-- inside double quotation mark -->
+      <p appBetterHighlight [highlightcolor]="'orange'" [defaultColor]="'pink'">Style me with better directive</p>
       <ng-template [ngIf]="onlyOdd">
         <p>Only odd</p>
       </ng-template>
+      <div [ngSwitch] = "value">
+        <p *ngSwitchCase="5">Value is 5</p>
+        <p *ngSwitchCase="10">Value is 10</p>
+        <p *ngSwitchCase="100">Value is 100</p>
+        <p *ngSwitchDefault>Value is default</p>
+      </div>
     </div>
   </div>
 </div>
