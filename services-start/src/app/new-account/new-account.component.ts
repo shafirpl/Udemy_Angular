@@ -5,13 +5,17 @@ import { AccountsService } from '../accounts.service';
   selector: 'app-new-account',
   templateUrl: './new-account.component.html',
   styleUrls: ['./new-account.component.css'],
-  providers: [LoggingService]
+  // providers: [LoggingService]
 })
 export class NewAccountComponent {
   // @Output() accountAdded = new EventEmitter<{name: string, status: string}>();
 
   constructor(private loggingService: LoggingService,
-    private accountService: AccountsService){}
+    private accountService: AccountsService){
+      this.accountService.statusUpdated.subscribe(
+        (status: string) => alert('New Status:' + status)
+      );
+    }
   onCreateAccount(accountName: string, accountStatus: string) {
     // this.accountAdded.emit({
     //   name: accountName,
@@ -21,6 +25,6 @@ export class NewAccountComponent {
     // service.logStatusChange(accountStatus);
     // // console.log('A server status changed, new status: ' + accountStatus);
     this.accountService.addAccount(accountName, accountStatus);
-    this.loggingService.logStatusChange(accountStatus);
+    // this.loggingService.logStatusChange(accountStatus);
   }
 }
