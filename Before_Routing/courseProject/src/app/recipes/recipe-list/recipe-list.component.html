@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-success">New Recipe</button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <app-recipe-item 
+        *ngFor="let recipeEl of recipes"
+        [recipe]="recipeEl"
+        ></app-recipe-item>
+
+        <!-- * In section 10 we started using service to emit events
+        * as well as establish cross-component communication
+        * so this code snippet was before section 10, where we get rid
+        * the (recipeSelected)="onRecipeSelected(recipeEl) -->
+        <!-- <app-recipe-item 
+        *ngFor="let recipeEl of recipes" 
+        [recipe]="recipeEl" 
+        (recipeSelected)="onRecipeSelected(recipeEl)">
+        </app-recipe-item> -->
+    </div>
+
+</div>
+
