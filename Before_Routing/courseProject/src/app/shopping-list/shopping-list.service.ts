@@ -1,7 +1,9 @@
 import {Ingredient} from '../shared/ingredient.model';
+import { EventEmitter } from '@angular/core';
 
 export class ShoppingListService {
-    ingredients: Ingredient[] = [
+    ingredientsChanged = new EventEmitter<Ingredient[]>();
+    private ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
         new Ingredient('Tomatoes', 10),
     ];
@@ -13,10 +15,17 @@ export class ShoppingListService {
         * will actually return the reference to the recipe array, which will
         * allow others to change the original array, we don;t want to allow that
         */
+
+        /*
+        * However, with this approach, when we call it to get
+        * the array and add new ingredient to this array, it won't work
+        * as we will get a copy of the array, not the original array
+        */
         return this.ingredients.slice();
     }
 
     addIngredient(ingredient: Ingredient){
       this.ingredients.push(ingredient);
+      this.ingredientsChanged.emit(this.ingredients.slice());
     }
 }
