@@ -5,13 +5,22 @@
 
 import {Recipe} from './recipe.model';
 import { EventEmitter } from '@angular/core';
+import { Ingredient } from '../shared/ingredient.model';
 
 
 export class RecipeService{
     recipeSelected = new EventEmitter<Recipe>();
     private recipes: Recipe[] = [
-        new Recipe('A Test Recipe', 'This is a simply test', 'https://cdn.apartmenttherapy.info/image/fetch/f_auto,q_auto,w_600,h_750,c_fit,fl_strip_profile/https://s3.amazonaws.com/pixtruder/original_images/d83512a0fe4e2d338f89ccde0c5de227646921cf'),
-        new Recipe('Another Test Recipe', 'This is a simply test', 'https://cdn.apartmenttherapy.info/image/fetch/f_auto,q_auto,w_600,h_750,c_fit,fl_strip_profile/https://s3.amazonaws.com/pixtruder/original_images/d83512a0fe4e2d338f89ccde0c5de227646921cf')
+        new Recipe('A Test Recipe', 
+        'This is a simply test', 
+        'https://cdn.apartmenttherapy.info/image/fetch/f_auto,q_auto,w_600,h_750,c_fit,fl_strip_profile/https://s3.amazonaws.com/pixtruder/original_images/d83512a0fe4e2d338f89ccde0c5de227646921cf',
+        [new Ingredient('Meat',1),
+        new Ingredient('French Fries',20)]),
+        new Recipe('Another Test Recipe', 
+        'This is a simply test', 
+        'https://cdn.apartmenttherapy.info/image/fetch/f_auto,q_auto,w_600,h_750,c_fit,fl_strip_profile/https://s3.amazonaws.com/pixtruder/original_images/d83512a0fe4e2d338f89ccde0c5de227646921cf',
+        [new Ingredient('Meat', 1),
+        new Ingredient('French Fries', 20)])
     ];
 
     getRecipes(){
