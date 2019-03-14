@@ -4,10 +4,11 @@
 */
 
 import {Recipe} from './recipe.model';
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
-
+@Injectable()
 export class RecipeService{
     recipeSelected = new EventEmitter<Recipe>();
     private recipes: Recipe[] = [
@@ -23,6 +24,10 @@ export class RecipeService{
         new Ingredient('French Fries', 20)])
     ];
 
+    constructor(private slService: ShoppingListService){
+
+    }
+
     getRecipes(){
         /*
         * Here we are using slice to return a copy of the original recipe
@@ -31,5 +36,9 @@ export class RecipeService{
         * allow others to change the original array, we don;t want to allow that
         */
         return this.recipes.slice();
+    }
+
+    addIngredientsToShoppingList(ingredients:Ingredient[]){
+        this.slService.addIngredients(ingredients);
     }
 }

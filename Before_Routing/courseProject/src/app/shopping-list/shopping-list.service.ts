@@ -28,4 +28,23 @@ export class ShoppingListService {
       this.ingredients.push(ingredient);
       this.ingredientsChanged.emit(this.ingredients.slice());
     }
+
+    addIngredients(ingredients: Ingredient[]){
+        //this adding method will emit too much events,
+        //that would slow down the app, it is a viable
+        //option, but a slower option
+        // for(let ingredient of ingredients){
+        //     this.addIngredient(ingredient);
+        // }
+
+        //here we are using a es6 syntax, which would 
+        //turn the array into a list of items
+        //we can't push an array to an array, it will
+        //give us errors, so this method
+
+        //...array_name will make the array items into 
+        //a list of items
+        this.ingredients.push(...ingredients);
+        this.ingredientsChanged.emit(this.ingredients.slice());
+    }
 }
