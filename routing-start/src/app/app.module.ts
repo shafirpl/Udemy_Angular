@@ -22,8 +22,10 @@ import {Routes, RouterModule} from '@angular/router';
 * the array
 *
 * second part is the action, it describes what component would be loaded
-* when we go to that url
-* the first item is an empty path, so that it looks like localhost:4200 on the browser
+* when we go to that url.
+* for example, if we go to localhost:4200/users, it will load up 
+* the UsersComponent
+* our first item is an empty path, so that it looks like localhost:4200 on the browser
 * we want to load up home page with this route
 */
 const appRoutes: Routes = [
