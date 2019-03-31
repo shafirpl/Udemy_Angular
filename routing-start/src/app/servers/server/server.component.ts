@@ -11,9 +11,11 @@ import { ServersService } from '../servers.service';
 export class ServerComponent implements OnInit {
   server: { id: number; name: string; status: string };
 
-  constructor(private serversService: ServersService,
+  constructor(
+    private serversService: ServersService,
     private router: Router,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    ) {}
 
   ngOnInit() {
     /*
@@ -33,5 +35,10 @@ export class ServerComponent implements OnInit {
       );
   }
 
+    onEdit(){
+      //here we are adding /edit at the end of current url, so 
+      //we are getting the current url using relativeTo: this.route
+      this.router.navigate(['edit'], {relativeTo: this.route});
+    }
 
 }
