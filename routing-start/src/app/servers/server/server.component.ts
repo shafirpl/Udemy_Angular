@@ -38,7 +38,7 @@ export class ServerComponent implements OnInit {
     onEdit(){
       //here we are adding /edit at the end of current url, so 
       //we are getting the current url using relativeTo: this.route
-      this.router.navigate(['edit'], {relativeTo: this.route});
+      this.router.navigate(['edit'], {relativeTo: this.route, queryParamsHandling:'preserve'});
     }
 
 }
