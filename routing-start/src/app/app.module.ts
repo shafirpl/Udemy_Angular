@@ -16,6 +16,7 @@ import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthService } from './auth.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 /*
 * Routes is basically array of routes, each item defines the url,
@@ -42,7 +43,8 @@ import { AuthService } from './auth.service';
     UserComponent,
     EditServerComponent,
     ServerComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
