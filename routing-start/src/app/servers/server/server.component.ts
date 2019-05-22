@@ -24,19 +24,25 @@ export class ServerComponent implements OnInit {
     * would get something like /servers/'1', and our server won't be able to find it
     * That is why in order to change '1' to 1, we need to convert it to number
     */
-    const id = +this.route.snapshot.params['id'];
-    this.server = this.serversService.getServer(1);
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          //similar reason discussed above, converting string to number
-          this.server = this.serversService.getServer(+params['id']);
-        }
-      );
-  }
+   this.route.data
+    .subscribe(
+      (data: Data) => {
+        this.server = data['server'];
+      }
+    );
+  //   const id = +this.route.snapshot.params['id'];
+  //   this.server = this.serversService.getServer(1);
+  //   this.route.params
+  //     .subscribe(
+  //       (params: Params) => {
+  //         //similar reason discussed above, converting string to number
+  //         this.server = this.serversService.getServer(+params['id']);
+  //       }
+  //     );
+  // }
 
     onEdit(){
-      //here we are adding /edit at the end of current url, so 
+      //here we are adding /edit at the end of current url, so
       //we are getting the current url using relativeTo: this.route
       this.router.navigate(['edit'], {relativeTo: this.route, queryParamsHandling:'preserve'});
     }
