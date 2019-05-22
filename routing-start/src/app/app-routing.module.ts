@@ -38,8 +38,9 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: '/not-found' }
 ];
 
+//The reason we are using useHash is explained in the google document, localization section
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
