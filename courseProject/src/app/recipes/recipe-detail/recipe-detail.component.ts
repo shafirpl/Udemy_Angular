@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -13,7 +13,8 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
   // we are using ActivatedRoute in order to retrive the id
   constructor(private recipeService: RecipeService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
    }
 
   ngOnInit() {
@@ -35,6 +36,19 @@ export class RecipeDetailComponent implements OnInit {
 
   onAddToShoppingList() {
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+  }
+
+  onEditRecipe(){
+    this.router.navigate(['edit'], { relativeTo: this.route });
+    /*
+    * this bottom code is another alternative.
+    * this means go up one level, add this.id to that url, and as well as edit
+    * So lets say we are at http://localhost:4200/recipes/0, then it would go up one level, 
+    * the url will be http://localhost:4200/recipes, then it will add the id 0, so http://localhost:4200/recipes/0,
+    * then it will add the edit, so url : http://localhost:4200/recipes/0/edit, the this.route will be 
+    * the url we are at, so http://localhost:4200/recipes/0
+    */
+    //this.router.navigate(['../', this.id, 'edit'], { relativeTo: this.route } );
   }
 
 }
