@@ -1,8 +1,8 @@
 import {Ingredient} from '../shared/ingredient.model';
-import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 
 export class ShoppingListService {
-    ingredientsChanged = new EventEmitter<Ingredient[]>();
+    ingredientsChanged = new Subject<Ingredient[]>();
     private ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
         new Ingredient('Tomatoes', 10),
@@ -24,27 +24,27 @@ export class ShoppingListService {
         return this.ingredients.slice();
     }
 
-    addIngredient(ingredient: Ingredient){
+    addIngredient(ingredient: Ingredient) {
       this.ingredients.push(ingredient);
-      this.ingredientsChanged.emit(this.ingredients.slice());
+      this.ingredientsChanged.next(this.ingredients.slice());
     }
 
-    addIngredients(ingredients: Ingredient[]){
-        //this adding method will emit too much events,
-        //that would slow down the app, it is a viable
-        //option, but a slower option
+    addIngredients(ingredients: Ingredient[]) {
+        // this adding method will emit too much events,
+        // that would slow down the app, it is a viable
+        // option, but a slower option
         // for(let ingredient of ingredients){
         //     this.addIngredient(ingredient);
         // }
 
-        //here we are using a es6 syntax, which would 
-        //turn the array into a list of items
-        //we can't push an array to an array, it will
-        //give us errors, so this method
+        // here we are using a es6 syntax, which would
+        // turn the array into a list of items
+        // we can't push an array to an array, it will
+        // give us errors, so this method
 
-        //...array_name will make the array items into 
-        //a list of items
+        // ...array_name will make the array items into
+        // a list of items
         this.ingredients.push(...ingredients);
-        this.ingredientsChanged.emit(this.ingredients.slice());
+        this.ingredientsChanged.next(this.ingredients.slice());
     }
 }
